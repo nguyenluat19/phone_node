@@ -1,0 +1,25 @@
+<!-- views/partials/header.ejs -->
+<header>
+  <nav>
+    <ul>
+      <li><a href="/">Trang chủ</a></li>
+      <li><a href="/cart">Giỏ hàng</a></li>
+      <li><a href="/checkout">Thanh toán</a></li>
+      <li><a href="/about">Giới thiệu</a></li>
+    </ul>
+    <form
+      action="/search"
+      method="get"
+      style="display: flex; margin-bottom: 20px"
+    >
+      <input
+        type="text"
+        name="q"
+        placeholder="Tìm kiếm sản phẩm..."
+        style="padding: 10px; width: 300px; margin-right: 10px"
+        required
+      />
+      <button type="submit" style="padding: 10px">Tìm kiếm</button>
+    </form>
+  </nav>
+</header>

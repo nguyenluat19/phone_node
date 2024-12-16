@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <h1>Giỏ hàng</h1>
+
+    <% if (cartDetails && cartDetails.length > 0) { %>
+    <!-- Kiểm tra xem giỏ hàng có sản phẩm không -->
+    <table>
+      <thead>
+        <tr>
+          <th>Ảnh</th>
+          <th>Tên sản phẩm</th>
+          <th>Số lượng</th>
+          <th>Giá</th>
+          <th>Tổng giá</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% cartDetails.forEach(item => { %>
+        <tr>
+          <td>
+            <img
+              src="<%= item.imageUrl %>"
+              alt="<%= item.name %>"
+              width="50"
+              height="50"
+            />
+          </td>
+          <td><%= item.name %></td>
+          <td>
+            <form action="/update-cart" method="POST">
+              <input type="hidden" name="id" value="<%= item._id %>" />
+              <input
+                type="number"
+                name="quantity"
+                value="<%= item.quantity %>"
+                min="1"
+              />
+              <button type="submit">Cập nhật</button>
+            </form>
+          </td>
+          <td><%= item.price.toLocaleString() %> VND</td>
+          <td><%= (item.price * item.quantity).toLocaleString() %> VND</td>
+          <td>
+            <form action="/remove-from-cart" method="POST">
+              <input type="hidden" name="id" value="<%= item._id %>" />
+              <button type="submit">Xóa</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <p>Tổng tiền: <%= totalPrice.toLocaleString() %> VND</p>
+
+    <% } else { %>
+    <p>Giỏ hàng của bạn hiện tại chưa có sản phẩm nào.</p>
+    <% } %>
+
+    <a href="/">Tiếp tục mua sắm</a>
+    <% if (cartDetails && cartDetails.length > 0) { %>
+    <a href="/checkout">Thanh toán</a>
+    <% } %>
+  </body>
+  <%- include('partials/footer') %>
+</html>

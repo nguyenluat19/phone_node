@@ -1,0 +1,324 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    /* Add consistent spacing between items */
+    padding: 20px;
+}
+
+.product-item {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    /* Rounded corners */
+    width: 220px;
+    /* Consistent width */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+    max-width: 100%;
+    height: 180px;
+    /* Fixed height for images */
+    object-fit: contain;
+    /* Maintain image aspect ratio */
+    margin-bottom: 15px;
+}
+
+.product-item h9 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.product-item p {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.add-to-cart-button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    margin-top: auto;
+    /* Push button to the bottom */
+}
+
+.add-to-cart-button:hover {
+    background-color: #0056b3;
+}
+
+
+.product-details {
+    text-align: center;
+    padding: 20px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-button:hover {
+    background-color: #218838;
+}
+
+
+/* Đặt font chữ và cơ bản cho toàn trang */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header */
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    width: 100%;
+    /* position: fixed; */
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header ul li {
+    margin-right: 20px;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+header ul li a:hover {
+    background-color: #555;
+}
+
+header form {
+    display: flex;
+    align-items: center;
+}
+
+header form input[type="text"] {
+    padding: 8px;
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+header form button {
+    padding: 8px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+header form button:hover {
+    background-color: #218838;
+}
+
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    /* position: fixed; */
+    width: 100%;
+    bottom: 0;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Giỏ hàng */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #333;
+    color: white;
+}
+
+table td img {
+    max-width: 100px;
+    height: auto;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Tạo khoảng cách và căn giữa các phần chính */
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    color: #333;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Tổng tiền */
+p {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Form input */
+input[type="number"] {
+    padding: 8px;
+    width: 80px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="hidden"] {
+    display: none;
+}
+
+/*slider*/
+
+/* Điều chỉnh chiều rộng và chiều cao của carousel */
+.carousel {
+    max-width: 80%;
+    /* Điều chỉnh chiều rộng của carousel */
+    margin: 0 auto;
+    /* Căn giữa carousel */
+}
+
+.carousel-inner img {
+    object-fit: cover;
+    /* Đảm bảo ảnh không bị méo */
+    height: 250px;
+    /* Đặt chiều cao của ảnh nhỏ lại */
+    width: 100%;
+    /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của carousel */
+}
+
+/* Thay đổi kích thước nút điều khiển */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-size: 50%;
+    /* Giảm kích thước nút */
+    width: 30px;
+    height: 30px;
+}
+
+/* Điều chỉnh chỉ báo carousel */
+.carousel-indicators button {
+    width: 8px;
+    /* Kích thước nút chỉ báo nhỏ lại */
+    height: 8px;
+    background-color: #000;
+    /* Màu của chỉ báo */
+}
+
+/* Điều chỉnh carousel cho các thiết bị có độ phân giải thấp */
+@media (max-width: 768px) {
+    .carousel {
+        max-width: 100%;
+        /* Chiếm toàn bộ chiều rộng màn hình */
+    }
+
+    .carousel-inner img {
+        height: 200px;
+        /* Giảm chiều cao ảnh trên màn hình nhỏ */
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 25px;
+        /* Giảm kích thước nút điều khiển trên màn hình nhỏ */
+        height: 25px;
+    }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh toán</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- Include header -->
+    <%- include('partials/header') %>
+
+    <h1>Thông tin thanh toán</h1>
+
+    <% if (cart && cart.length > 0) { %>
+    <form action="/checkout" method="POST">
+      <h2>Thông tin giao hàng</h2>
+      <label for="name">Họ và tên:</label>
+      <input type="text" name="name" id="name" required />
+
+      <label for="address">Địa chỉ giao hàng:</label>
+      <input type="text" name="address" id="address" required />
+
+      <h2>Thông tin thanh toán</h2>
+      <label for="paymentMethod">Phương thức thanh toán:</label>
+      <select name="paymentMethod" id="paymentMethod" required>
+        <option value="credit-card">Thẻ tín dụng</option>
+        <option value="paypal">PayPal</option>
+        <option value="cash-on-delivery">Thanh toán khi nhận hàng</option>
+      </select>
+
+      <h2>Giỏ hàng của bạn</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tổng giá</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cart.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.quantity %></td>
+            <td>
+              <% if (item.price && !isNaN(item.price)) { %> <%=
+              item.price.toLocaleString() %> VND <% } else { %>
+              <span>Giá không hợp lệ</span>
+              <% } %>
+            </td>
+            <td>
+              <% if (item.price && !isNaN(item.price)) { %> <%= (item.price *
+              item.quantity).toLocaleString() %> VND <% } else { %>
+              <span>Giá không hợp lệ</span>
+              <% } %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+      <p>
+        Tổng tiền: <%= totalPrice && !isNaN(totalPrice) ?
+        totalPrice.toLocaleString() : 'Không xác định' %> VND
+      </p>
+      <button type="submit">Thanh toán</button>
+    </form>
+    <% } else { %>
+    <p>
+      Giỏ hàng của bạn trống. Vui lòng thêm sản phẩm vào giỏ hàng trước khi
+      thanh toán.
+    </p>
+    <% } %>
+
+    <script>
+      // Xử lý sự kiện submit
+      document
+        .getElementById("checkoutForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault(); // Ngăn tải lại trang
+
+          const formData = new FormData(e.target);
+          const formObject = Object.fromEntries(formData.entries());
+
+          try {
+            // Gửi dữ liệu thanh toán đến server
+            const response = await fetch("/checkout", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formObject),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+              // Hiển thị thông báo thanh toán thành công
+              alert(`
+              ${result.message}\n
+              Đơn hàng của bạn:\n
+              ${result.orderSummary.items
+                .map(
+                  (item) =>
+                    `- ${item.name}: ${
+                      item.quantity
+                    } x ${item.price.toLocaleString("vi-VN")}₫`
+                )
+                .join("\n")}\n
+              Tổng tiền: ${result.orderSummary.totalPrice.toLocaleString(
+                "vi-VN"
+              )}₫
+            `);
+
+              // Chuyển hướng đến trang chủ hoặc trang khác nếu muốn
+              window.location.href = "/";
+            } else {
+              alert("Thanh toán thất bại, vui lòng thử lại.");
+            }
+          } catch (error) {
+            console.error(error);
+            alert("Đã xảy ra lỗi trong quá trình thanh toán.");
+          }
+        });
+    </script>
+    <!-- Include footer -->
+    <%- include('partials/footer') %>
+  </body>
+</html>
